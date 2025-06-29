@@ -1,0 +1,128 @@
+
+RTOS vs Superloop
+Superloop
+
+    A single infinite loop that continuously checks and executes tasks one after another, without an OS or scheduler.
+
+Diagram:
+
+setup()
+  |
+  |--> Task A
+       ↓
+     Task B
+       ↓
+     Task C
+       ↓
+     back to Task A
+
+Key Characteristics:
+
+    Embedded programs do not exit this loop.
+
+    Programs are started/stopped by the host (e.g., when power is turned on/off).
+
+    No shutdown routines — they keep running as long as power is on.
+
+Superloop Example in Code:
+
+void main(void)
+{
+    while(1)  // Infinite loop
+    {
+        func1();
+        func2();
+        func3();
+    }
+}
+
+    This loop runs forever, repeatedly executing the functions in order.
+
+It continues for infinite times
+
+Example program:
+
+main()
+{
+    system_initialization();
+
+    while(1)
+    {
+        check_device_status();
+        process_device_data();
+        output_response();
+    }
+}
+
+Superloop in RTOS 
+
+    Tasks in superloop:
+
+    Func1() → Func2() → Func3()
+
+
+    Any main() loop that never returns is referred to as a superloop.
+
+    No time constraints—functions are run one after the other with no strict scheduling.
+
+RTOS
+
+light weight operating system provides task scheduling,intertask communication delay and resource management
+
+    handles task based on priority
+    accurate time and dellay
+    used for complex systems
+
+
+superloop --> led blinking,basic sensor reading,low power application
+
+RTOS --> Motor control,communication protocol,multitasking , application safety,critical systems.
+
+
+
+function pointer
+
+A function pointer that points to a function instad of variables .it allows you to call function indirectly and useful in
+------> callbacks , event handling ,jump tables , menu driven programs.
+
+Declaration  --------  int(*fptr)(int,int);
+Assign function ------  fptr =&myfunction
+call through pointer ---- fptr(10,20);
+pass as argument ------ mycaller(fptr)
+
+
+basic syntax:
+    return_type (*pointer_name)(parameter_list)
+
+Example:
+
+#include<stdio.h>
+void greet(){
+  printf("hello from function");
+}
+int main(){
+   void(*fptr)(); ----->declaration
+   fptr=greet; ----->assigning
+   fptr(); -----> calling a function
+return 0 ;
+}
+
+
+
+Array of structure
+
+Multiple thread with single variable
+
+syntax:
+
+struct(name){
+
+members
+}
+
+structure array syntax:
+
+struct structure arrname[size of array];
+
+we can able tio access fewnumber of records using struct but to access more number of records 
+we must use the structure array concept int this way we can able to store and access more records
