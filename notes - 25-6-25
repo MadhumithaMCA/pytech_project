@@ -1,1 +1,281 @@
+1. Understanding about the OSI Model
+
+7 OSI Layers:
+
+    Physical Layer
+
+    Data Link Layer
+
+    Network Layer
+
+    Transport Layer
+
+    Session Layer
+
+    Presentation Layer
+
+    Application Layer
+
+        Examples: HTTP, HTTPS, FTP, NFS, SMTP, DHCP, SNMP, TELNET, POP3, IRC, NNTP
+
+Why OSI is Important?
+
+    OSI → Open System Interconnection
+
+    It is a conceptual model created by the International Organization for Standardization (ISO) for communication using standard protocols.
+
+Key Points:
+
+    The internet does not follow the OSI model strictly.
+
+    It is useful for troubleshooting network problems.
+
+    The OSI model breaks down the problem and helps to locate trouble and solve issues.
+
+Application Layer (Layer 7)
+
+    Request → Web Server → Response
+
+    It is the only layer that directly interacts with users.
+
+    Protocols used:
+
+        HTTP, SMTP, FTP, NFS, DHCP, SNMP, TELNET, POP3, IRC, NNTP
+
+    Functions:
+
+        File transfer
+
+        Web browsing
+
+        Email
+
+        Virtual terminals
+
+Presentation Layer (Layer 6)
+
+    Handles:
+
+        Character/Number encoding
+
+        Encryption → Compression (bits reduction) → Translation
+
+    Responsibilities:
+
+        Prepares data received from the application layer for transmission.
+
+        Handles data translation, encryption, and compression.
+
+Session Layer (Layer 5)
+
+    Manages session of communication between two devices.
+
+    Responsibilities:
+
+        Opens and closes communication sessions.
+
+        Maintains the time duration between opening and closing of a session.
+
+Transport Layer (Layer 4)
+
+    Handles:
+
+        Segmentation → Transport → Reassembly
+
+    Ensures complete data transfer and reliability.
+
+    Responsible for end-to-end communication between devices.
+
+    Protocols used:
+
+        TCP (Transmission Control Protocol)
+
+        UDP (User Datagram Protocol)
+
+3. Network Layer
+
+    Handles:
+
+        Packet Creation → Transport → Packet Assembly
+
+    Responsible for data transfer between two networks.
+
+    Protocols used:
+
+        ICMP (Internet Control Message Protocol)
+
+        IGMP (Internet Group Management Protocol)
+
+2. Data Link Layer
+
+    Handles:
+
+        Frame Creation → Transport → Transfer Frames between networks
+
+    Similar to the network layer, but:
+
+        It takes packets from the network layer and breaks them into smaller frames for transmission.
+
+1. Physical Layer
+
+    Transfers raw bitstreams over the physical medium.
+
+    Example:
+    [ ] ——— 0010100010 ———> Receiving Cable
+    (Sending Cable → Receiving Cable)
+
+Physical Layer 
+
+    Includes physical equipment such as:
+
+        Cables
+
+        Switches
+
+    The data transmitted at this layer is in the form of 0s and 1s.
+
+    Responsible for transmitting bits over wires/hardware.
+
+OSI Layers and Their Functions
+
+    Application Layer (Layer 7)
+
+        User-facing layer
+
+        Handles protocols like:
+
+            HTTP, FTP, DNS
+
+    Presentation Layer (Layer 6)
+
+        Responsible for:
+
+            Formatting, encryption, compression
+
+        Examples:
+
+            JPEG, TLS, ASCII
+
+    Session Layer (Layer 5)
+
+        Manages session control
+
+        Examples:
+
+            NetBIOS, SMB
+
+    Transport Layer (Layer 4)
+
+        Ensures end-to-end connection
+
+        Protocols:
+
+            TCP, UDP
+
+    Network Layer (Layer 3)
+
+        Handles routing and IP addressing
+
+        Protocols:
+
+            IP, ICMP
+
+    Data Link Layer (Layer 2)
+
+        Ensures frame delivery
+
+        Protocols:
+
+            Ethernet, ARP, PPP
+
+    Physical Layer (Layer 1)
+
+        Transmits bits via hardware
+
+        Media:
+
+            Cables, radio, Wi-Fi, signals
+
+
+State Machine
+
+State Machine / FSM (Finite State Machine) is a programming model consisting of:
+
+    A set of states
+
+    Transitions between states based on events
+
+    Execution of specific actions in each state
+
+Definition:
+
+A computational model representing a system with a finite number of states.
+Basic Components:
+
+    State – Different steps or modes of operation (e.g., Idle, Sending)
+
+    Transitions – Method of moving between different states (e.g., one state to another)
+
+    Actions (Events/Triggers) – Events or changes that occur during the execution of the state machine
+
+Examples:
+
+    Elevator system:
+
+        States: Going up, Going down, Open/close door
+
+    Traffic Lights:
+
+        Transition between Red, Green, Yellow
+
+        Triggered by timers
+
+    Software Systems:
+
+        Used in user interfaces, game logic
+
+    Network Protocols
+
+        Use FSMs for predictable packet handling and communication
+
+Benefits:
+
+    Provides an organized representation of complex logic
+
+    Ensures predictable behavior
+
+    Promotes modularity
+
+    Reduces complexity in system design
+
+
+Finite State Machine – Diagram Explanation
+
+    It is used for modeling and managing the dynamic behavior of various systems using a Finite State Machine (FSM).
+
+Example: Door State Machine
+
+[1] door opened
+   ↑         ↓
+ open     close
+   ↓         ↑
+[2] door closed
+
+Components in the Diagram:
+
+    States:
+
+        door opened
+
+        door closed
+
+    Transitions:
+
+        open (from closed to opened)
+
+        close (from opened to closed)
+
+    Transition condition: Based on input events like opening or closing
+
+    Entry action: For example, when entering the "door closed" state
 
