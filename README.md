@@ -34,7 +34,7 @@
 
 # PROGRAMS IMPLEMENTED
 
-1. circular buffer(using queue)
+# 1. circular buffer(using queue)
 
 # operations
 it performs operations such as 
@@ -42,14 +42,14 @@ enqueue()
 dequeue()
 display()
 
-3. basic queue
+# 2. basic queue
 
 # Basic queue operations:
           enqueue: Add element to the rear
           dequeue: Remove element from the front
           display: Show all current queue elements
    
-5. linked list(node creation,count,insertion at the end)
+# 3. linked list(node creation,count,insertion at the end)
 
 # This program includes:
 
@@ -69,7 +69,7 @@ Prints all node data in the list from head to last.
 add_at_the_end(struct node *head, int data)`
 Adds a new node with the given data at the end of the list.
 
-## state machine
+# 4.state machine
 
 # Message Exchange State Machine
 
