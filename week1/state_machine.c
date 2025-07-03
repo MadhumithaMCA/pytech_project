@@ -1,109 +1,102 @@
 #include <stdio.h>
 
 typedef enum {
-    STATE_IDLE,
-    STATE_SENDING,
-    STATE_WAIT_ACK,
-    STATE_RECEIVING
-} State;
+    FLOOR_GROUND,
+    FLOOR_FIRST,
+    FLOOR_SECOND
+} Floor;
 
 typedef enum {
-    EVENT_SEND,
-    EVENT_RECEIVE,
-    EVENT_ACK,
-    EVENT_TIMEOUT
+    EVENT_GO_UP,
+    EVENT_GO_DOWN,
+    EVENT_STOP
 } Event;
 
-// Convert state enum to string
-const char* state_to_string(State state) {
-    switch (state) {
-        case STATE_IDLE: return "STATE_IDLE";
-        case STATE_SENDING: return "STATE_SENDING";
-        case STATE_WAIT_ACK: return "STATE_WAIT_ACK";
-        case STATE_RECEIVING: return "STATE_RECEIVING";
-        default: return "UNKNOWN_STATE";
+const char* floor_to_string(Floor f) {
+    switch (f) {
+        case FLOOR_GROUND: return "GROUND FLOOR";
+        case FLOOR_FIRST:  return "FIRST FLOOR";
+        case FLOOR_SECOND: return "SECOND FLOOR";
+        default: return "UNKNOWN";
     }
 }
 
-// Convert event enum to string (optional)
-const char* event_to_string(Event event) {
-    switch (event) {
-        case EVENT_SEND: return "EVENT_SEND";
-        case EVENT_RECEIVE: return "EVENT_RECEIVE";
-        case EVENT_ACK: return "EVENT_ACK";
-        case EVENT_TIMEOUT: return "EVENT_TIMEOUT";
-        default: return "UNKNOWN_EVENT";
+const char* event_to_string(Event e) {
+    switch (e) {
+        case EVENT_GO_UP: return "GO UP";
+        case EVENT_GO_DOWN: return "GO DOWN";
+        case EVENT_STOP: return "STOP";
+        default: return "UNKNOWN EVENT";
     }
 }
 
-State handle_event(State current_state, Event event) {
-    switch (current_state) {
-        case STATE_IDLE:
-            if (event == EVENT_SEND) {
-                printf("Sending message...\n");
-                return STATE_SENDING;
-            } else if (event == EVENT_RECEIVE) {
-                printf("Message received. Processing...\n");
-                return STATE_RECEIVING;
-            }
-            break;
-
-        case STATE_SENDING:
-            if (event == EVENT_ACK) {
-                printf("ACK received. Returning to idle.\n");
-                return STATE_IDLE;
-            } else if (event == EVENT_TIMEOUT) {
-                printf("Timeout! Resending message...\n");
-                return STATE_SENDING;
+Floor handle_event(Floor current_floor, Event event) {
+    switch (current_floor) {
+        case FLOOR_GROUND:
+            if (event == EVENT_GO_UP) {
+                printf("Going up to First Floor...\n");
+                return FLOOR_FIRST;
+            } else if (event == EVENT_STOP) {
+                printf("Lift stopped at Ground Floor.\n");
+                return FLOOR_GROUND;
             } else {
-                printf("Waiting for ACK...\n");
-                return STATE_WAIT_ACK;
-            }
-
-        case STATE_WAIT_ACK:
-            if (event == EVENT_ACK) {
-                printf("ACK received. Message delivered.\n");
-                return STATE_IDLE;
-            } else if (event == EVENT_TIMEOUT) {
-                printf("ACK timeout. Resending message.\n");
-                return STATE_SENDING;
+                printf("Already at Ground. Can't go down.\n");
             }
             break;
 
-        case STATE_RECEIVING:
-            if (event == EVENT_ACK) {
-                printf("Sending ACK back to sender.\n");
-                return STATE_IDLE;
+        case FLOOR_FIRST:
+            if (event == EVENT_GO_UP) {
+                printf("Going up to Second Floor...\n");
+                return FLOOR_SECOND;
+            } else if (event == EVENT_GO_DOWN) {
+                printf("Going down to Ground Floor...\n");
+                return FLOOR_GROUND;
+            } else if (event == EVENT_STOP) {
+                printf("Lift stopped at First Floor.\n");
+                return FLOOR_FIRST;
+            }
+            break;
+
+        case FLOOR_SECOND:
+            if (event == EVENT_GO_DOWN) {
+                printf("Going down to First Floor...\n");
+                return FLOOR_FIRST;
+            } else if (event == EVENT_STOP) {
+                printf("Lift stopped at Second Floor.\n");
+                return FLOOR_SECOND;
+            } else {
+                printf("Already at top. Can't go up.\n");
             }
             break;
     }
 
-    printf("No valid transition. Staying in current state.\n");
-    return current_state;
+    return current_floor;
 }
 
 int main() {
-    State current_state = STATE_IDLE;
+    Floor current_floor = FLOOR_GROUND;
 
     Event events[] = {
-        EVENT_SEND,
-        EVENT_TIMEOUT,
-        EVENT_SEND,
-        EVENT_ACK,
-        EVENT_RECEIVE,
-        EVENT_ACK
+        EVENT_GO_UP,
+        EVENT_STOP,
+        EVENT_GO_UP,
+        EVENT_STOP,
+        EVENT_GO_UP,
+        EVENT_GO_DOWN,
+        EVENT_STOP
     };
 
     int num_events = sizeof(events) / sizeof(events[0]);
 
-    printf("Starting Message Exchange FSM:\n");
+    printf("Starting Lift FSM Simulation...\n");
     for (int i = 0; i < num_events; i++) {
-        printf("\nEvent %d (%s):\n", i + 1, event_to_string(events[i]));
-        current_state = handle_event(current_state, events[i]);
-        printf("Current State: %s\n", state_to_string(current_state));
+        printf("\nEvent %d: %s\n", i + 1, event_to_string(events[i]));
+        current_floor = handle_event(current_floor, events[i]);
+        printf("Current Floor: %s\n", floor_to_string(current_floor));
     }
 
     return 0;
 }
+
 
 
