@@ -1,84 +1,107 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct node{
+// Define a node structure for the singly linked list
 
-	int data;
-	struct node*link;
+struct node {
+    int data;              // Stores the value
+    struct node *link;     // Pointer to the next node
 };
 
-  void count_of_nodes(struct node *head){
+// Function to count the number of nodes in the list
 
-                int count=0;
+void count_of_nodes(struct node *head) {
+    int count = 0;
 
-                if(head == NULL)
+    if (head == NULL) {
+        printf("The list is empty\n");
+        return;
+    }
 
-                        printf("the listis empty");
-                struct node*ptr =NULL;
-                ptr=head;
+    // Pointer to traverse the list
+	
+    struct node *ptr = NULL;
+    ptr = head;
 
-                while(ptr !=NULL){
+    // Traverse until end of the list and count nodes
+    while (ptr != NULL) {
+        count++;
+        ptr = ptr->link;
+    }
 
-                        count ++;
-                        ptr = ptr->link;
-                }
-                printf("the number of nodes is:%d\n",count);
-        }
-
-void print_data(struct node *head){
-
-	if(head==0)
-		printf("the list is empty");
-
-	struct node *ptr =NULL;
-	ptr = head;
-
-	while(ptr!=NULL){
-
-		printf("%d\n",ptr->data);
-		ptr = ptr->link;
-	}
+    printf("The number of nodes is: %d\n", count);
 }
 
-void add_at_the_end(struct node *head,int data){
+// Function to print all node data
+void print_data(struct node *head) {
+    if (head == NULL) {
+        printf("The list is empty\n");
+        return;
+    }
 
-	struct node *ptr ,*temp;
-	ptr = head;
+    struct node *ptr = NULL;
+    ptr = head;
 
-	temp = (struct node *)malloc(sizeof(struct node));
-	    temp->data= data;
-	    temp->link = NULL;
+    // Print data in each node
+    while (ptr != NULL) {
+        printf("%d\n", ptr->data);
+        ptr = ptr->link;
+    }
+}
 
-	    while(ptr->link !=NULL){
+// Function to add a node at the end of the list
+void add_at_the_end(struct node *head, int data) {
+    struct node *ptr, *temp;
+    ptr = head;
 
-	      ptr =ptr->link;
-	      }
-	      ptr->link = temp;
-	 }
+    // Allocate memory for the new node
+    temp = (struct node *)malloc(sizeof(struct node));
+    temp->data = data;      // Set its data
+    temp->link = NULL;      // It's the last node, so link is NULL
 
-int main(){
+    // Traverse to the last node
+    while (ptr->link != NULL) {
+        ptr = ptr->link;
+    }
 
-	struct node *head = malloc(sizeof(struct node));
-	head->data =43;
-	head->link = NULL;
+    // Link the last node to the new node
+    ptr->link = temp;
+}
 
-	struct node *current= malloc(sizeof(struct node));
-	current->data=32;
-	current->link = NULL;
-	head->link=current;
+int main() {
+    // Create the first node (head)
+    struct node *head = malloc(sizeof(struct node));
+    head->data = 43;
+    head->link = NULL;
 
-	current= malloc(sizeof(struct node));
-	current->data=22;
-	current->link = NULL;
+    // Create second node and link it to head
+	
+    struct node *current = malloc(sizeof(struct node));
+    current->data = 32;
+    current->link = NULL;
+    head->link = current;
 
-	head->link->link = current;
+    // Create third node and link it to second node
+	
+    current = malloc(sizeof(struct node));
+    current->data = 22;
+    current->link = NULL;
+    head->link->link = current;
 
-	count_of_nodes(head);
-	print_data(head);
-	add_at_the_end(head,55);
+    // Count and print the number of nodes
+	
+    count_of_nodes(head);
 
+    // Print all node data
+    print_data(head);
 
+    // Add a new node with data 55 at the end
+	
+    add_at_the_end(head, 55);
 
-	printf("the added nodes are :%d\n%d\n%d\n",head->data,head->link->data,head->link->link->data);
-        return 0;       
+    // Print the first three nodes again for confirmation
+	
+    printf("The added nodes are:\n%d\n%d\n%d\n", head->data, head->link->data, head->link->link->data);
+
+    return 0;
 }
