@@ -1,5 +1,7 @@
 WEEK 1 Tasks overview
 
+OSI Model concept
+
 1.  Application Layer (Layer 7)==>
         User-facing layer==>
         protocols   HTTP, FTP, DNS
@@ -30,7 +32,17 @@ WEEK 1 Tasks overview
             Cables, radio, Wi-Fi, signals
 
 
-PROGRAMS 
+PROGRAMS IMPLEMENTED
+
+1. circular buffer(using queue)
+2. basic queue
+3. linked list(node creation,count,insertion at the end)
+4. state machine
+
+C-based UDP Chat App
+
+udp_chat _client
+udp_chat_server
 
 
 
