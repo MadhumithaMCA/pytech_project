@@ -97,7 +97,7 @@ EVENT_TIMEOUT: A timeout occurred while waiting for an ACK.
 
 # output
 
-![Alt Text](recent:///d7902dfd4ab4f206e9d24eb0686676ec)
+![output image](/home/madhumitha/Pictures/state_machine.png)
 
 
 # C-based UDP Chat App
