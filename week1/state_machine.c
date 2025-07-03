@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 typedef enum {
     STATE_IDLE,
     STATE_SENDING,
@@ -15,6 +14,27 @@ typedef enum {
     EVENT_TIMEOUT
 } Event;
 
+// Convert state enum to string
+const char* state_to_string(State state) {
+    switch (state) {
+        case STATE_IDLE: return "STATE_IDLE";
+        case STATE_SENDING: return "STATE_SENDING";
+        case STATE_WAIT_ACK: return "STATE_WAIT_ACK";
+        case STATE_RECEIVING: return "STATE_RECEIVING";
+        default: return "UNKNOWN_STATE";
+    }
+}
+
+// Convert event enum to string (optional)
+const char* event_to_string(Event event) {
+    switch (event) {
+        case EVENT_SEND: return "EVENT_SEND";
+        case EVENT_RECEIVE: return "EVENT_RECEIVE";
+        case EVENT_ACK: return "EVENT_ACK";
+        case EVENT_TIMEOUT: return "EVENT_TIMEOUT";
+        default: return "UNKNOWN_EVENT";
+    }
+}
 
 State handle_event(State current_state, Event event) {
     switch (current_state) {
@@ -42,7 +62,7 @@ State handle_event(State current_state, Event event) {
 
         case STATE_WAIT_ACK:
             if (event == EVENT_ACK) {
-                printf(" ACK received. Message delivered.\n");
+                printf("ACK received. Message delivered.\n");
                 return STATE_IDLE;
             } else if (event == EVENT_TIMEOUT) {
                 printf("ACK timeout. Resending message.\n");
@@ -65,7 +85,6 @@ State handle_event(State current_state, Event event) {
 int main() {
     State current_state = STATE_IDLE;
 
-
     Event events[] = {
         EVENT_SEND,
         EVENT_TIMEOUT,
@@ -79,10 +98,12 @@ int main() {
 
     printf("Starting Message Exchange FSM:\n");
     for (int i = 0; i < num_events; i++) {
-        printf("Event %d: ", i+1);
+        printf("\nEvent %d (%s):\n", i + 1, event_to_string(events[i]));
         current_state = handle_event(current_state, events[i]);
+        printf("Current State: %s\n", state_to_string(current_state));
     }
 
     return 0;
 }
+
 
