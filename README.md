@@ -73,9 +73,8 @@ Adds a new node with the given data at the end of the list.
 
 # Message Exchange State Machine
 
-This is a C program that uses a state machine to simulate message exchange between two states
+This is a C program that uses a state machine to simulate message exchange between two states.
 
-# Description
 The FSM transitions between four states:
 
 STATE_IDLE: Waiting to send or receive a message.
@@ -87,6 +86,7 @@ STATE_WAIT_ACK: Waiting for an acknowledgment after sending.
 STATE_RECEIVING: Message has been received and is being processed.
 
 # events:
+
 EVENT_SEND: Send a message.
 
 EVENT_RECEIVE: Receive a message.
@@ -96,7 +96,7 @@ EVENT_ACK: Acknowledgment received.
 EVENT_TIMEOUT: A timeout occurred while waiting for an ACK.
 
 
-C-based UDP Chat App
+# C-based UDP Chat App
 
 The application uses sockets to send and receive messages between two devices or processes using User Datagram Protocol (UDP).
 
