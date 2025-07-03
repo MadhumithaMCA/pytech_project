@@ -95,6 +95,10 @@ EVENT_ACK: Acknowledgment received.
 
 EVENT_TIMEOUT: A timeout occurred while waiting for an ACK.
 
+# output
+
+![Alt Text](recent:///d7902dfd4ab4f206e9d24eb0686676ec)
+
 
 # C-based UDP Chat App
 
