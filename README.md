@@ -1,6 +1,6 @@
-WEEK 1 Tasks overview
+# WEEK 1 Tasks overview
 
-OSI Model concept
+# OSI Model concept
 
 1.  Application Layer (Layer 7)==>
         User-facing layer==>
@@ -32,14 +32,68 @@ OSI Model concept
             Cables, radio, Wi-Fi, signals
 
 
-PROGRAMS IMPLEMENTED
+# PROGRAMS IMPLEMENTED
 
 1. circular buffer(using queue)
-2. basic queue
-3. linked list(node creation,count,insertion at the end)
-4. state machine
+
+# operations
+it performs operations such as 
+enqueue()
+dequeue()
+display()
+
+3. basic queue
+
+# Basic queue operations:
+          enqueue: Add element to the rear
+          dequeue: Remove element from the front
+          display: Show all current queue elements
+   
+5. linked list(node creation,count,insertion at the end)
+
+# This program includes:
+
+ Creating a static linked list manually
+ Counting the number of nodes
+ Printing the list data
+ Adding a new node at the end dynamically
+
+# Key Functions
+
+count_of_nodes(struct node *head)`
+Counts and prints the total number of nodes in the list.
+
+print_data(struct node *head)`
+Prints all node data in the list from head to last.
+
+add_at_the_end(struct node *head, int data)`
+Adds a new node with the given data at the end of the list.
+
+## state machine
+
+# Message Exchange State Machine
+
+This is a C program that uses a state machine to simulate message exchange between two states
+
+# Description
+The FSM transitions between four states:
+
+STATE_IDLE: Waiting to send or receive a message.
+STATE_SENDING: Message is being sent.
+STATE_WAIT_ACK: Waiting for an acknowledgment after sending.
+STATE_RECEIVING: Message has been received and is being processed.
+
+# events:
+EVENT_SEND: Send a message.
+EVENT_RECEIVE: Receive a message.
+EVENT_ACK: Acknowledgment received.
+EVENT_TIMEOUT: A timeout occurred while waiting for an ACK.
+
 
 C-based UDP Chat App
+
+The application uses sockets to send and receive messages between two devices or processes using User Datagram Protocol (UDP) 
+
 
 udp_chat _client
 
