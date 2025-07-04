@@ -7,9 +7,9 @@
 
 1. circular buffer(using queue)
   
-3. basic queue
+2. basic queue
 
-4. linked list(node creation,count,insertion at the end)
+3. linked list(node creation,count,insertion at the end)
 
 4.state machine
 
