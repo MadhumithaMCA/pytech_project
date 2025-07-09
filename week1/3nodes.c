@@ -54,6 +54,7 @@ void add_at_the_end(struct node *head,int data){
 	      ptr =ptr->link;
 	      }
 	      ptr->link = temp;
+	      printf("the list after adding node%d\n",data);
 	 }
 
 int main(){
@@ -76,9 +77,12 @@ int main(){
 	count_of_nodes(head);
 	print_data(head);
 	add_at_the_end(head,55);
+	print_data(head);
+	count_of_nodes(head);
 
 
 
-	printf("the added nodes are :%d\n%d\n%d\n",head->data,head->link->data,head->link->link->data);
+
+//	printf("the added nodes are :%d\n%d\n%d\n",head->data,head->link->data,head->link->link->data);
         return 0;       
 }
